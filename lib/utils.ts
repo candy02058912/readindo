@@ -15,3 +15,16 @@ export function downloadCSV(csvContent: string) {
   element.download = "export.csv";
   element.click();
 }
+
+export const isVisible = function (ele: HTMLElement, container: any) {
+  const eleTop = ele.offsetTop;
+  const eleBottom = eleTop + ele.clientHeight;
+
+  const containerTop = container.scrollTop + container.offsetTop;
+  const containerBottom = containerTop + container.clientHeight;
+
+  return (
+    // The element is fully visible in the container
+    eleTop >= containerTop && eleBottom <= containerBottom
+  );
+};

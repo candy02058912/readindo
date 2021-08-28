@@ -26,7 +26,18 @@ const SidebarContent = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             w="100%"
           >
-            Dashboard
+            Text
+          </Button>
+        </Link>
+      </LinkBox>
+      <LinkBox>
+        <Link href="/app/video" passHref>
+          <Button
+            colorScheme={router.pathname === "/app/video" ? "pink" : "gray"}
+            onClick={onClick}
+            w="100%"
+          >
+            Video
           </Button>
         </Link>
       </LinkBox>
