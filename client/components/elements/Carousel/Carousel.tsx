@@ -65,24 +65,24 @@ const Carousel = ({
               backgroundSize="cover"
               alt=""
               backgroundColor="pink.500"
-              filter="brightness(0.5)"
-              _hover={{ filter: "brightness(1)" }}
               transition="all .5s"
               backgroundImage={`url(${slide.media})`}
               onClick={onClickSlide ? onClickSlide(slide.summary!) : undefined}
               cursor="pointer"
-            />
-            <Stack
-              p="8px 12px"
-              pos="absolute"
-              bottom={{ base: "12px", md: "24px" }}
-              textAlign="center"
-              w="full"
-              mb="8"
-              color="white"
             >
-              <Text fontSize={{ base: "lg", md: "2xl" }}>{slide.title}</Text>
-            </Stack>
+              <Stack
+                p="8px 12px"
+                pos="absolute"
+                bottom={{ base: "12px", md: "24px" }}
+                textAlign="center"
+                w="full"
+                mb="8"
+                color="white"
+                backgroundColor="blackAlpha.800"
+              >
+                <Text fontSize={{ base: "lg", md: "2xl" }}>{slide.title}</Text>
+              </Stack>
+            </Box>
           </Box>
         ))}
       </Flex>
