@@ -6,8 +6,8 @@ import { MutableRefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import React from "react";
-import { MdPlayCircleFilled } from "react-icons/md";
 import { isVisible } from "@lib/utils";
+import TranscriptElement from "@elements/Transcript/TranscriptElement";
 
 type TranscriptProps = {
   playerRef: MutableRefObject<any>;
@@ -23,12 +23,6 @@ const Transcript = (
   const [transcript, setTranscript] = useState<YouTubeTranscript[]>([]);
   const handleSeek = (start: number) => () => {
     playerRef.current.seekTo(start);
-  };
-
-  const setScrollToRef = (isPlaying: boolean) => (elem: HTMLDivElement) => {
-    if (isPlaying) {
-      scrollToRef.current = elem;
-    }
   };
 
   const renderTranscript = () => {
@@ -48,28 +42,14 @@ const Transcript = (
         isPlaying = true;
       }
       output.push(
-        <Flex
-          ref={setScrollToRef(isPlaying)}
-          id={`t${i}`}
+        <TranscriptElement
           key={`t${i}`}
-          alignItems="center"
-          mt={4}
-        >
-          <Icon
-            width={6}
-            height={6}
-            as={MdPlayCircleFilled}
-            onClick={handleSeek(start)}
-            mr={2}
-            aria-label="Play this line"
-            cursor="pointer"
-          />
-          <Box backgroundColor={`${isPlaying ? "gray.200" : ""}`}>
-            {text.split(/\s+/).map((word, ix) => (
-              <Word key={`${ix}-${word}`} text={word} />
-            ))}
-          </Box>
-        </Flex>
+          isPlaying={isPlaying}
+          scrollToRef={scrollToRef}
+          handleSeek={handleSeek}
+          start={start}
+          text={text}
+        />
       );
     }
 
