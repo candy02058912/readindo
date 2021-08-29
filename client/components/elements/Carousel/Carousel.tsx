@@ -51,15 +51,6 @@ const Carousel = ({
       <Flex h={{ base: "200px", md: "400px" }} w="full" {...carouselStyle}>
         {slides.map((slide: Slide, sid: number) => (
           <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
-            <Text
-              color="white"
-              fontSize="xs"
-              p="8px 12px"
-              pos="absolute"
-              top="0"
-            >
-              {sid + 1} / {slidesCount}
-            </Text>
             <Box
               boxSize="full"
               backgroundSize="cover"
