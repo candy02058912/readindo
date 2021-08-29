@@ -77,9 +77,11 @@ const Transcript = (
   return (
     <Box
       ref={ref}
-      maxHeight="360px"
-      width={{ base: "100%", md: "500px" }}
       overflow="auto"
+      maxHeight="360px"
+      height={{ base: "200px", lg: "100%" }}
+      px={4}
+      border="pink solid"
     >
       {renderTranscript()}
     </Box>
@@ -102,8 +104,13 @@ const VideoPlayer = ({ videoURL }: { videoURL: string }) => {
     }
   };
   return (
-    <Stack direction={{ base: "column", md: "row" }}>
-      <Box mr={4}>
+    <Stack direction={{ base: "column", lg: "row" }} width="100%">
+      <Box
+        mr={4}
+        height={{ base: "300px", lg: "360px" }}
+        width="100%"
+        maxWidth="640px"
+      >
         <ReactPlayer
           ref={playerRef}
           url={videoURL}
@@ -111,6 +118,8 @@ const VideoPlayer = ({ videoURL }: { videoURL: string }) => {
           playing
           onProgress={handleProgress}
           progressInterval={200}
+          height="100%"
+          width="100%"
         />
       </Box>
       <TranscriptForwardRef

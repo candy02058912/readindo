@@ -17,7 +17,7 @@ const TranscriptElement = ({
     }
   };
   return (
-    <Flex ref={setScrollToRef(isPlaying)} alignItems="center" mt={4}>
+    <Flex ref={setScrollToRef(isPlaying)} alignItems="center" pt={4}>
       <Icon
         width={6}
         height={6}
