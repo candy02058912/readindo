@@ -1,7 +1,6 @@
-import { Box, Flex, Icon, IconButton, Stack, Text } from "@chakra-ui/react";
-import Word from "@elements/Word/Word";
-import { YouTubeTranscript } from "@lib/types";
 import axios from "axios";
+import { Box, Stack } from "@chakra-ui/react";
+import { YouTubeTranscript } from "@lib/types";
 import { MutableRefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";

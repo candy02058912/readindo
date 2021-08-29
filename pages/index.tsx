@@ -78,7 +78,7 @@ const Index = () => {
               </Heading>
             </Container>
             <Container maxWidth="container.md">
-              <Heading size="lg">Read and learn Indonesian!</Heading>
+              <Heading size="lg">Learn Indonesian!</Heading>
             </Container>
           </VStack>
         </Center>

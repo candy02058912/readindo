@@ -2,30 +2,25 @@ import axios from "axios";
 import { MongoClient, ObjectId } from "mongodb";
 import { mongoClient } from "server/db/mongo";
 
-axios.defaults.baseURL = `https://${process.env.TRANSLATOR_API_HOST}`;
-axios.defaults.headers = {
-  "Content-Type": "application/json",
-  "x-rapidapi-key": process.env.TRANSLATOR_API_KEY,
-  "x-rapidapi-host": process.env.TRANSLATOR_API_HOST,
-};
-axios.defaults.method = "POST";
-
-export const getWord = (text: string) => {
-  const options = {
-    url: "/Dictionary/Lookup",
-    params: { from: "id", "api-version": "3.0", to: "en" },
-    data: [{ Text: text }],
-  };
-
-  return axios
-    .request(options)
+export const getWord = (text: string) =>
+  axios
+    .request({
+      method: "POST",
+      url: `https://${process.env.TRANSLATOR_API_HOST}/Dictionary/Lookup`,
+      params: { from: "id", "api-version": "3.0", to: "en" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-rapidapi-key": process.env.TRANSLATOR_API_KEY,
+        "x-rapidapi-host": process.env.TRANSLATOR_API_HOST,
+      },
+      data: [{ Text: text }],
+    })
     .then(function (response) {
       return response.data;
     })
     .catch(function (error) {
       console.error(error);
     });
-};
 
 export const saveWord = async (
   userId: string,

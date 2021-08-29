@@ -5,9 +5,7 @@ import {
   Heading,
   HStack,
   Link,
-  ListItem,
   Textarea,
-  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 
@@ -17,6 +15,7 @@ import Word from "@elements/Word/Word";
 import { useRef, useState } from "react";
 import { ExternalLinkIcon, PlusSquareIcon } from "@chakra-ui/icons";
 import { META } from "@lib/constants";
+import NewsCarousel from "@elements/NewsCarousel/NewsCarousel";
 
 export default function App() {
   const textAreaRef = useRef<any>(null);
@@ -24,14 +23,25 @@ export default function App() {
   const [step, setStep] = useState(0);
   const handleClick = () => {
     setData(textAreaRef.current.value);
-    setStep(step + 1);
+    setStep(1);
   };
+
+  const handleCarouselClick = (summary: string) => () => {
+    window.scrollTo(0, document.body.scrollHeight);
+    setData(summary);
+    setStep(1);
+  };
+
   return (
     <Page meta={META}>
       <AppLayout>
         <Heading>Dashboard</Heading>
         <VStack mt={4} spacing={4} alignItems="start">
-          <Heading size="md">Find an article here!</Heading>
+          <Heading size="md">
+            Read an article summary by choosing an article below!
+          </Heading>
+          <NewsCarousel onClick={handleCarouselClick} />
+          <Heading size="md">Or copy and paste an article below!</Heading>
           <HStack>
             <Link href="https://www.kompas.com" isExternal>
               Kompas <ExternalLinkIcon mx="2px" />
@@ -43,21 +53,22 @@ export default function App() {
               CNN Indonesia <ExternalLinkIcon mx="2px" />
             </Link>
           </HStack>
-          <Heading size="md">Paste Indonesian Text Here</Heading>
-
+          <Heading size="md">Paste text here!</Heading>
           <Textarea p={4} ref={textAreaRef} />
           <Button onClick={handleClick}>Load</Button>
         </VStack>
         <Collapse in={step > 0} animateOpacity>
-          <Heading size="md" mt={4}>
-            Select the words you want to look up and click on <PlusSquareIcon />{" "}
-            to save to Word List!
-          </Heading>
-          <Box p={4} mt={4} border="1px solid" rounded="md">
-            {data.split(/\s+/).map((text, ix) => (
-              <Word key={`${ix}-${text}`} text={text} />
-            ))}
-          </Box>
+          <VStack align="start" mb={4}>
+            <Heading size="md" mt={4}>
+              Select the words you want to look up and click on{" "}
+              <PlusSquareIcon /> to save to Word List!
+            </Heading>
+            <Box p={4} mt={4} border="1px solid" rounded="md" width="full">
+              {data.split(/\s+/).map((text, ix) => (
+                <Word key={`${ix}-${text}`} text={text} />
+              ))}
+            </Box>
+          </VStack>
         </Collapse>
       </AppLayout>
     </Page>

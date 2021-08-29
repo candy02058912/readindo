@@ -9,3 +9,9 @@ export interface YouTubeTranscript {
   offset: number;
   duration: number;
 }
+
+export interface Slide {
+  media?: string;
+  title?: string;
+  summary?: string;
+}
