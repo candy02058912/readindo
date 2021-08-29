@@ -10,7 +10,6 @@ const TranscriptElement = ({
   handleSeek,
   start,
   text,
-  key,
 }: any) => {
   const setScrollToRef = (isPlaying: boolean) => (elem: HTMLDivElement) => {
     if (isPlaying) {
@@ -18,7 +17,7 @@ const TranscriptElement = ({
     }
   };
   return (
-    <Flex ref={setScrollToRef(isPlaying)} id={key} alignItems="center" mt={4}>
+    <Flex ref={setScrollToRef(isPlaying)} alignItems="center" mt={4}>
       <Icon
         width={6}
         height={6}
@@ -37,4 +36,7 @@ const TranscriptElement = ({
   );
 };
 
-export default React.memo(TranscriptElement);
+export default React.memo(
+  TranscriptElement,
+  (prevProps, nextProps) => prevProps.isPlaying === nextProps.isPlaying
+);
