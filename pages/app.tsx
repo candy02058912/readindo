@@ -27,9 +27,9 @@ export default function App() {
   };
 
   const handleCarouselClick = (summary: string) => () => {
-    window.scroll(0, document.body.scrollHeight);
     setData(summary);
     setStep(1);
+    setTimeout(() => window.scroll(0, document.body.scrollHeight), 500);
   };
 
   return (
