@@ -5,6 +5,8 @@ import {
   Heading,
   HStack,
   Link,
+  Stack,
+  Text,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
@@ -38,11 +40,12 @@ export default function App() {
         <Heading>Dashboard</Heading>
         <VStack mt={4} spacing={4} alignItems="start">
           <Heading size="md">
-            Read an article summary by choosing an article below!
+            Choose a featured article (updates daily)!
           </Heading>
           <NewsCarousel onClick={handleCarouselClick} />
-          <Heading size="md">Or copy and paste an article below!</Heading>
-          <HStack>
+          <Heading size="md">Or copy and paste your own text below!</Heading>
+          <Stack direction={{ base: "column", lg: "row" }}>
+            <Text>News sites:</Text>
             <Link href="https://www.kompas.com" isExternal>
               Kompas <ExternalLinkIcon mx="2px" />
             </Link>
@@ -52,7 +55,7 @@ export default function App() {
             <Link href="https://www.cnnindonesia.com/" isExternal>
               CNN Indonesia <ExternalLinkIcon mx="2px" />
             </Link>
-          </HStack>
+          </Stack>
           <Heading size="md">Paste text here!</Heading>
           <Textarea p={4} ref={textAreaRef} />
           <Button onClick={handleClick}>Load</Button>
