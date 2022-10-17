@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Box, Stack } from "@chakra-ui/react";
 import { YouTubeTranscript } from "@lib/types";
 import { MutableRefObject } from "react";
